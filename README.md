@@ -47,7 +47,7 @@ This logic reflects real-world call center prioritization where expert staff are
 |------|------|
 | Average Waiting Time | ~0.07 minutes |
 | Probability of Waiting | ~8% |
-| Average Time in System | ~2.19 minutes |
+| Average Time in System | ~2.13 minutes |
 | Server Idle Probability | ~19% |
 
 These results indicate:
