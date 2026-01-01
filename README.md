@@ -1,45 +1,65 @@
-# Double-Server Call Center Simulation Analysis
+# Double-Server Queuing Simulation 
 
-#📌 Project Overview
+## 📌 Overview
+This project implements a **Python-based discrete-event simulation** of a technical support call center using a **double-server queuing system**, commonly known as the **Able & Baker model** in Operations Research.
 
-This project provides a Python-based simulation of a technical support call center using a Double-Server Queuing Model. It specifically implements the classic "Able & Baker" scenario to analyze how prioritizing service personnel with different skill levels affects overall system efficiency and customer satisfaction.
+The simulation analyzes how **priority-based server assignment** with heterogeneous service rates impacts:
+- Customer waiting time
+- Probability of delay
+- Server utilization
+- Overall system efficiency
 
-The simulation models 70,000 unique customer interactions (700 customers across 100 trials) to ensure high statistical reliability.
+To ensure statistical reliability, the system simulates **70,000 customer interactions** (700 customers × 100 independent trials).
 
-#⚙️ System Configuration
+---
 
-The system operates with a stochastic arrival process and two servers with distinct performance profiles:
+## ⚙️ System Configuration
 
-Arrival Process: Exponential distribution with a Mean Inter-arrival Time of 4.0 minutes.
+### Arrival Process
+- **Distribution:** Exponential (Poisson arrivals)
+- **Mean inter-arrival time:** 4.0 minutes
+- **Operating start time:** 9:00 AM
 
-Operating Hours: Starts at 9:00 AM.
+### Service Personnel
+| Server | Role | Priority | Mean Service Time |
+|------|------|---------|------------------|
+| Able | Expert Technician | High | 3.0 minutes |
+| Baker | Trainee Technician | Low | 0.9 minutes |
 
-Service Personnel:
+---
 
-Able (Expert): Prioritized technician, Mean service time = 3.0 minutes.
+## 🧠 Simulation Logic
 
-Baker (Trainee): Secondary technician, Mean service time = 0.9 minutes.
+Customer assignment follows a **rule-based priority system**:
 
-#🧠 Simulation Logic
+1. If **Able is idle**, assign the customer to Able.
+2. If Able is busy and **Baker is idle**, assign the customer to Baker.
+3. If both servers are busy, the customer **joins a queue**.
+4. When both servers finish simultaneously, **Able is selected** (tie-break rule).
 
-The core of this project is the Rule-Based Assignment System:
+This logic reflects real-world call center prioritization where expert staff are preferred when available.
 
-Priority 1: If Able is idle, assign the customer to Able.
+---
 
-Priority 2: If Able is busy but Baker is idle, assign the customer to Baker.
+## 📊 Key Results (100-Trial Average)
 
-Queue: If both servers are busy, the customer joins a queue and waits for the first available technician.
+| Metric | Value |
+|------|------|
+| Average Waiting Time | ~0.07 minutes |
+| Probability of Waiting | ~8% |
+| Average Time in System | ~2.19 minutes |
+| Server Idle Probability | ~73% |
 
-Tie-Break: If both finish simultaneously, Able is assigned.
+These results indicate:
+- Very low congestion
+- High scalability
+- Efficient prioritization strategy
 
-#📊 Key Results
+---
 
-Based on the 100-trial simulation, the system demonstrates high stability:
+## 📈 Visualizations
 
-Average Waiting Time: ~0.07 minutes.
-
-Probability of Waiting: ~8%.
-
-Server Idle Probability: ~73% (indicating high scalability).
-
-Average System Time: ~2.19 minutes.
+The simulation generates **histograms of total time in system**, showing that:
+- Most customers experience negligible or zero waiting
+- Delays are rare and short
+- Priority assignment significantly improves service performance.
