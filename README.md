@@ -48,7 +48,7 @@ This logic reflects real-world call center prioritization where expert staff are
 | Average Waiting Time | ~0.07 minutes |
 | Probability of Waiting | ~8% |
 | Average Time in System | ~2.19 minutes |
-| Server Idle Probability | ~73% |
+| Server Idle Probability | ~19% |
 
 These results indicate:
 - Very low congestion
@@ -60,6 +60,6 @@ These results indicate:
 ## 📈 Visualizations
 
 The simulation generates **histograms of total time in system**, showing that:
-- Most customers experience negligible or zero waiting
-- Delays are rare and short
+- Most customers experience zero waiting.
+- Delays are rare and short.
 - Priority assignment significantly improves service performance.
